@@ -17,7 +17,7 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
           <link rel="icon" href="./favicon.ico" />
         </Head>
-        <body style={{background: "linear-gradient(#0d324d, #7f5a83)"}}>
+        <body style={{background: "linear-gradient(#0d324d, #7f5a83)", overflowX: "hidden"}}>
           <Main />
           <NextScript />
         </body>

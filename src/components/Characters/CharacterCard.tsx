@@ -18,7 +18,15 @@ const CharacterCard: React.FC<Props> = ({character, selected, setSelected}) => {
   const { id, image, name, status, species, location, episode } = character; 
 
   return ( 
-    <Stack direction="row" spacing={2} bgcolor="info.main" borderRadius={5} width={600} position="relative">
+    <Stack 
+     sx={{ cursor: selected ? "auto" : "pointer"}}
+     position="relative"
+     direction="row" 
+     bgcolor="info.main" 
+     borderRadius={5} 
+     spacing={2} 
+     width={600} 
+    >
       <CustomImage image={image} />
       <Stack py={2} spacing={1}>
         <Typography variant="h5" fontWeight={700} color="secondary"  >
