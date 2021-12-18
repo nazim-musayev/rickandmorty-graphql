@@ -26,24 +26,23 @@ export const categoryVariants = {
 } as any;
 
 export const characterCards = {
-  hidden: (initX: number) => ({
+  hidden: {
     opacity: 0,
-    x: initX
-  }),
-  visible: (initX: number) => ({
+    x: -200
+  },
+  visible: { 
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.1,
       type: "spring",
-      damping: initX === 150 ? 25 : 100,
+      damping: 100,
       stiffness: 500
     }
-  }),
-  out: (initX: number) => ({
+  },
+  out: {
     opacity: 0,
-    x: -(initX)
-  })
+    x: 200
+  }
 };
 
 export const episodeCards = {
@@ -72,4 +71,4 @@ export const locationCards = {
     opacity: 0,
     x: 150
   }
-}
+};

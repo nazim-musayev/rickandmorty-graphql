@@ -4,6 +4,7 @@ import { QUERY_LOCATIONS } from 'src/apollo/queries';
 import { QueryVariables, LocationsData, Location } from 'src/interfaces';
 import Pagination from 'src/components/Shared/Pagination';
 import LocationCards from 'src/components/Locations';
+import Meta from 'src/components/Shared/Meta';
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -31,6 +32,7 @@ interface Props {
 const LocationsPage: NextPage<Props> = ({locations, allPages}) => {
   return (
     <>
+      <Meta title="Locations" />
       <Pagination allPages={allPages} />
       <LocationCards locations={locations} />
     </>

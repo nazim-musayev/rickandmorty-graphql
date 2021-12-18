@@ -5,30 +5,31 @@ import { QueryVariables, CharactersData, Character } from 'src/interfaces';
 import Pagination from 'src/components/Shared/Pagination'
 import CharactersPage from 'src/components/Characters';
 import Chips from 'src/components/Characters/Chips';
+import Meta from 'src/components/Shared/Meta';
 
 
-export const getServerSideProps: GetServerSideProps = async ({query, req}) => {
+export const getServerSideProps: GetServerSideProps = async ({query}) => {
   const { page, status, species } = query;
-  const currentPage = Number(page) || 1;
 
   const { data } = await client.query<CharactersData, QueryVariables>({
     query: QUERY_CHARACTERS,
     variables: {
-      page: currentPage,
+      page: Number(page) || 1,
       status: (status === "all" || !status) ? "" : status.toString(),
       species: (species === "all" || !species) ? "" : species.toString()
     }
   });
 
-  const referer = req.headers.referer;
-  const previousPage = Number(referer?.slice(referer?.indexOf('=') + 1, (referer?.indexOf('&'))));
-  const initialX = (!referer || !referer.includes("page")) ? -150 : (previousPage > currentPage ? 150 : -150);  
+  const names: string[] = [];
+  data.characters.results.map((item) => {
+    names.push(item.name)
+  });
   
   return {
     props: { 
       characters: data.characters.results,
       allPages: data.characters.info.pages,
-      initialX
+      names,
     }
   }
 };
@@ -36,19 +37,19 @@ export const getServerSideProps: GetServerSideProps = async ({query, req}) => {
 interface Props {
   characters: Character[],
   allPages: number,
-  initialX: number
+  names: string[]
 };
 
-const Characters: NextPage<Props> = ({characters, allPages, initialX}) => {
+const Characters: NextPage<Props> = ({characters, allPages, names}) => {
   
   return (
     <>
+      <Meta title="Characters" keywords={names.join(",")} />
       <Pagination allPages={allPages} />
       <Chips forStatus={false} />
       <Chips forStatus={true} />
-      <CharactersPage characters={characters} initialX={initialX}/>
+      <CharactersPage characters={characters} />
     </>
-    
   )
 };
 

@@ -10,7 +10,7 @@ const Navs: React.FC = () => {
   return (
     <>
       {navs.map((item, idx) => (
-        <Link href={`${item.toLowerCase()}`} passHref key={idx}>
+        <Link href={`/${item.toLowerCase()}`} passHref key={idx}>
           <MuiLink 
            variant="overline" 
            fontSize={20} fontWeight={600} 

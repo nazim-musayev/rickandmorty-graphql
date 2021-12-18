@@ -53,7 +53,7 @@ const CharacterCard: React.FC<Props> = ({character, selected, setSelected}) => {
       </Stack>
       {selected === id && (
         <Stack position="absolute" right={0} p={2}>
-          <IconButton sx={{color: "aquamarine"}} onClick={() => setSelected(null)!}>
+          <IconButton sx={{color: "aquamarine"}} onClick={() => setSelected(null)}>
             <ImCancelCircle />
           </IconButton>
         </Stack>

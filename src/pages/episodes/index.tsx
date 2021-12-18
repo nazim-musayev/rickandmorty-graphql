@@ -4,6 +4,7 @@ import { QUERY_EPISODES } from 'src/apollo/queries';
 import { QueryVariables, EpisodesData, Episode } from 'src/interfaces';
 import Pagination from 'src/components/Shared/Pagination';
 import EpisodeCards from 'src/components/Episodes';
+import Meta from 'src/components/Shared/Meta';
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -31,6 +32,7 @@ interface Props {
 const EpisodesPage: NextPage<Props> = ({episodes, allPages}) => {
   return (
       <>
+        <Meta title="Episodes" />
         <Pagination allPages={allPages} />
         <EpisodeCards episodes={episodes} />
       </>

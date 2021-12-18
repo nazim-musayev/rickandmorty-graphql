@@ -20,11 +20,10 @@ const sx = {
 };
 
 interface Props {
-  characters: Character[],
-  initialX: number
+  characters: Character[]
 };
 
-const Characters: React.FC<Props> = ({characters, initialX}) => {
+const Characters: React.FC<Props> = ({characters}) => {
   const [selected, setSelected] = useState<string | null>(null);
   const selectedItem = characters.find(item => item.id === selected);
 
@@ -37,7 +36,6 @@ const Characters: React.FC<Props> = ({characters, initialX}) => {
            initial="hidden"
            animate="visible"
            exit="out"
-           custom={initialX}
            layoutId={character.id}
            onClick={() => setSelected(character.id)}
           >
