@@ -6,8 +6,6 @@ import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from 'src/styles/theme';
 import createEmotionCache from 'src/utils/createEmotionCache';
 import Layout from 'src/components/Layout';
-import { ApolloProvider } from '@apollo/client';
-import client from 'src/apollo/client';
 import { AnimatePresence } from 'framer-motion';
 
 
@@ -29,11 +27,9 @@ export default function MyApp(props: MyAppProps) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <AnimatePresence exitBeforeEnter>
-          <ApolloProvider client={client}>
-            <Layout>
-              <Component {...pageProps} key={`${router.asPath}`} />
-            </Layout>
-          </ApolloProvider>
+          <Layout>
+            <Component {...pageProps} key={`${router.asPath}`} />
+          </Layout>
         </AnimatePresence>
       </ThemeProvider>
     </CacheProvider>
